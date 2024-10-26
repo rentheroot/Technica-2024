@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Keyboard</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 2px;
+            width: 90vw;
+            height: 80vh;
+        }
+        .key {
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3vw;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .key:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+    <script>
+        async function keyPressed(symbol) {
+            const response = await fetch('/key_pressed', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symbol: symbol })
+            });
+            const result = await response.json();
+            console.log(result);  // Optional: Log the response from the server
+        }
+    </script>
+</head>
+<body>
+
+<div class="keyboard">
+    <!-- Create 40 keys -->
+    <div class="key" onclick="keyPressed('1')">1</div>
+    <div class="key" onclick="keyPressed('2')">2</div>
+    <div class="key" onclick="keyPressed('3')">3</div>
+    <div class="key" onclick="keyPressed('4')">4</div>
+    <div class="key" onclick="keyPressed('5')">5</div>
+    <div class="key" onclick="keyPressed('6')">6</div>
+    <div class="key" onclick="keyPressed('7')">7</div>
+    <div class="key" onclick="keyPressed('8')">8</div>
+    <div class="key" onclick="keyPressed('9')">9</div>
+    <div class="key" onclick="keyPressed('0')">0</div>
+    <div class="key" onclick="keyPressed('A')">A</div>
+    <div class="key" onclick="keyPressed('B')">B</div>
+    <div class="key" onclick="keyPressed('C')">C</div>
+    <div class="key" onclick="keyPressed('D')">D</div>
+    <div class="key" onclick="keyPressed('E')">E</div>
+    <div class="key" onclick="keyPressed('F')">F</div>
+    <div class="key" onclick="keyPressed('G')">G</div>
+    <div class="key" onclick="keyPressed('H')">H</div>
+    <div class="key" onclick="keyPressed('I')">I</div>
+    <div class="key" onclick="keyPressed('J')">J</div>
+    <div class="key" onclick="keyPressed('K')">K</div>
+    <div class="key" onclick="keyPressed('L')">L</div>
+    <div class="key" onclick="keyPressed('M')">M</div>
+    <div class="key" onclick="keyPressed('N')">N</div>
+    <div class="key" onclick="keyPressed('O')">O</div>
+    <div class="key" onclick="keyPressed('P')">P</div>
+    <div class="key" onclick="keyPressed('Q')">Q</div>
+    <div class="key" onclick="keyPressed('R')">R</div>
+    <div class="key" onclick="keyPressed('S')">S</div>
+    <div class="key" onclick="keyPressed('T')">T</div>
+    <div class="key" onclick="keyPressed('U')">U</div>
+    <div class="key" onclick="keyPressed('V')">V</div>
+    <div class="key" onclick="keyPressed('W')">W</div>
+    <div class="key" onclick="keyPressed('X')">X</div>
+    <div class="key" onclick="keyPressed('Y')">Y</div>
+    <div class="key" onclick="keyPressed('Z')">Z</div>
+    <div class="key" onclick="keyPressed('+')">+</div>
+    <div class="key" onclick="keyPressed('-')">-</div>
+    <div class="key" onclick="keyPressed('*')">*</div>
+    <div class="key" onclick="keyPressed('/')">/</div>
+</div>
+
+</body>
+</html>
