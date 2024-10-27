@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Keyboard</title>
+    <title>Phoneme Keyboard</title>
     <style>
         body {
             display: flex;
@@ -13,8 +14,10 @@
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
             margin: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
+            /* Prevent scrolling */
         }
+
         .keyboard {
             display: grid;
             grid-template-columns: repeat(10, 1fr);
@@ -23,6 +26,7 @@
             width: 90vw;
             height: 80vh;
         }
+
         .key {
             background-color: #ffffff;
             border: 1px solid #cccccc;
@@ -33,10 +37,638 @@
             font-size: 3vw;
             cursor: pointer;
             transition: background-color 0.2s;
+            position: relative;
+            /* Needed for absolute positioning of the background */
         }
+
         .key:hover {
             background-color: #e0e0e0;
         }
+
+        .key.aa {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 40%, rgba(21, 0, 255, 0.495) 50%-60%, rgba(255, 255, 255, 0.411) 70%),
+                /* Right shaded */
+                url('/assets/lock.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ae {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 35%, rgba(21, 0, 255, 0.495) 40%-50%, rgba(255, 255, 255, 0.411) 60%),
+                /* Right shaded */
+                url('/assets/bat.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.aw {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 57%, rgba(255, 0, 0, 0) 43%),
+                /* Right shaded */
+                url('/assets/cow.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.eh {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 35%, rgba(21, 0, 255, 0.495) 40%-50%, rgba(255, 255, 255, 0.411) 60%),
+                /* Right shaded */
+                url('/assets/bed.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.b {
+            background-image:
+                linear-gradient(to left,rgba(44, 0, 205, 0.411) 99.99%, rgba(255, 0, 0, 0) 0%),
+                /* Right shaded */
+                url('/assets/bee.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.uh {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 65%, rgba(255, 0, 0, 0) 35%),
+                /* Right shaded */
+                url('/assets/book.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.oy {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 60%, rgba(255, 0, 0, 0) 40%),
+                /* Right shaded */
+                url('/assets/boy.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.jh {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 55%, rgba(255, 0, 0, 0) 45%),
+                /* Right shaded */
+                url('/assets/bridge.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ch {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 57%, rgba(44, 0, 205, 0.411) 43%),
+                /* Right shaded */
+                url('/assets/cheese.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.d {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 30%, rgba(44, 0, 205, 0.411) 70%),
+                /* Right shaded */
+                url('/assets/deer.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.dh {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 40%, rgba(225, 0, 0, 0) 60%),
+                /* Right shaded */
+                url('/assets/earth.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ih {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 55%, rgba(21, 0, 255, 0.495) 55%-65%, rgba(255, 255, 255, 0.411) 65%),
+                /* Right shaded */
+                url('/assets/fish.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.f {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 50%, rgba(255, 0, 0, 0) 60%),
+                /* Right shaded */
+                url('/assets/frog.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.g {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 53%, rgba(44, 0, 205, 0.411) 47%),
+                /* Right shaded */
+                url('/assets/girl.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.hh {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                /* Right shaded */
+                url('/assets/house.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.k {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 55%, rgba(44, 0, 205, 0.411) 45%),
+                /* Right shaded */
+                url('/assets/key.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.l {
+            background-image:
+                linear-gradient(to left,  rgba(255, 0, 0, 0) 65%,rgba(44, 0, 205, 0.411) 35%),
+                /* Right shaded */
+                url('/assets/lamp.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.m {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                /* Right shaded */
+                url('/assets/mouse.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.n {
+            background-image:
+                linear-gradient(to left,  rgba(255, 0, 0 ,0) 65%, rgba(44, 0, 205, 0.411) 35%),
+                /* Right shaded */
+                url('/assets/nail.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ah {
+            background-image:
+                linear-gradient(to left,  rgba(255, 255, 255, 0.527) 35%, rgba(21, 0, 255, 0.495) 40%-50%, rgba(255, 255, 255, 0.411) 60%),
+                /* Right shaded */
+                url('/assets/nut.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.p {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 55%,rgba(44, 0, 205, 0.411) 45%),
+                /* Right shaded */
+                url('/assets/pig.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ay {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 53%, rgba(255, 0, 0, 0) 47%),
+                /* Right shaded */
+                url('/assets/questionmark.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.r {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                /* Right shaded */
+                url('/assets/rabbit.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ng {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 40%, rgba(44, 0, 205, 0.411) 40%-65%, rgba(255, 0, 0, 0) 60%),
+                /* Right shaded */
+                url('/assets/ring.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.z {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 60%, rgba(255, 0, 0, 0) 40%),
+                /* Right shaded */
+                url('/assets/rose.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.sh {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 55%, rgba(44, 0, 205, 0.411) 45%),
+                /* Right shaded */
+                url('/assets/sheep.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.uw {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 50%, rgba(255, 0, 0, 0) 50%),
+                /* Right shaded */
+                url('/assets/shoe.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.s {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0 ,0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                /* Right shaded */
+                url('/assets/snake.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.zh {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 30%, rgba(255, 0, 0, 0) 70%),
+                /* Right shaded */
+                url('/assets/television.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.th {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 30%, rgba(255, 0, 0, 0) 70%),
+                /* Right shaded */
+                url('/assets/tooth.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.iy {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 50%, rgba(255, 0, 0, 0) 55%),
+                /* Right shaded */
+                url('/assets/tree.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.t {
+            background-image:
+                linear-gradient(to left,  rgba(255, 0, 0 ,0) 65%, rgba(44, 0, 205, 0.411) 35%),
+                /* Right shaded */
+                url('/assets/turtle.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.v {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 70%, rgba(44, 0, 205, 0.411) 30%),
+                /* Right shaded */
+                url('/assets/vehicle.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.w {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 57%, rgba(44, 0, 205, 0.411) 43%),
+                /* Right shaded */
+                url('/assets/whale.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ow {
+            background-image:
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 35%, rgba(255, 0, 0, 0) 65%),
+                /* Right shaded */
+                url('/assets/window.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.y {
+            background-image:
+                linear-gradient(to left, rgba(255, 0, 0, 0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                /* Right shaded */
+                url('/assets/yoyo.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ao {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 45%, rgba(21, 0, 255, 0.495) 50%-65%, rgba(255, 255, 255, 0.411) 70%),
+                /* Right shaded */
+                url('/assets/clock.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.er {
+            background-image:
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 45%, rgba(21, 0, 255, 0.495) 50%-60%, rgba(255, 255, 255, 0.411) 65%),
+                /* Right shaded */
+                url('/assets/bird.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
+        .key.ey {
+            background-image:
+                linear-gradient(to left,  rgba(255, 255, 255, 0.527) 45%, rgba(21, 0, 255, 0.495) 45%-65%, rgba(255, 255, 255, 0.411) 65%),
+                /* Right shaded */
+                url('/assets/cake.svg');
+            /* Update this path */
+            background-size: contain;
+            /* Scale the image to fit within the key */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Center the image */
+            color: transparent;
+            /* Make the text transparent if desired */
+        }
+
     </style>
     <script>
         async function keyPressed(symbol) {
@@ -52,51 +684,16 @@
         }
     </script>
 </head>
+
 <body>
 
-<div class="keyboard">
-    <!-- Create 40 keys -->
-    <div class="key" onclick="keyPressed('1')">1</div>
-    <div class="key" onclick="keyPressed('2')">2</div>
-    <div class="key" onclick="keyPressed('3')">3</div>
-    <div class="key" onclick="keyPressed('4')">4</div>
-    <div class="key" onclick="keyPressed('5')">5</div>
-    <div class="key" onclick="keyPressed('6')">6</div>
-    <div class="key" onclick="keyPressed('7')">7</div>
-    <div class="key" onclick="keyPressed('8')">8</div>
-    <div class="key" onclick="keyPressed('9')">9</div>
-    <div class="key" onclick="keyPressed('0')">0</div>
-    <div class="key" onclick="keyPressed('A')">A</div>
-    <div class="key" onclick="keyPressed('B')">B</div>
-    <div class="key" onclick="keyPressed('C')">C</div>
-    <div class="key" onclick="keyPressed('D')">D</div>
-    <div class="key" onclick="keyPressed('E')">E</div>
-    <div class="key" onclick="keyPressed('F')">F</div>
-    <div class="key" onclick="keyPressed('G')">G</div>
-    <div class="key" onclick="keyPressed('H')">H</div>
-    <div class="key" onclick="keyPressed('I')">I</div>
-    <div class="key" onclick="keyPressed('J')">J</div>
-    <div class="key" onclick="keyPressed('K')">K</div>
-    <div class="key" onclick="keyPressed('L')">L</div>
-    <div class="key" onclick="keyPressed('M')">M</div>
-    <div class="key" onclick="keyPressed('N')">N</div>
-    <div class="key" onclick="keyPressed('O')">O</div>
-    <div class="key" onclick="keyPressed('P')">P</div>
-    <div class="key" onclick="keyPressed('Q')">Q</div>
-    <div class="key" onclick="keyPressed('R')">R</div>
-    <div class="key" onclick="keyPressed('S')">S</div>
-    <div class="key" onclick="keyPressed('T')">T</div>
-    <div class="key" onclick="keyPressed('U')">U</div>
-    <div class="key" onclick="keyPressed('V')">V</div>
-    <div class="key" onclick="keyPressed('W')">W</div>
-    <div class="key" onclick="keyPressed('X')">X</div>
-    <div class="key" onclick="keyPressed('Y')">Y</div>
-    <div class="key" onclick="keyPressed('Z')">Z</div>
-    <div class="key" onclick="keyPressed('+')">+</div>
-    <div class="key" onclick="keyPressed('-')">-</div>
-    <div class="key" onclick="keyPressed('*')">*</div>
-    <div class="key" onclick="keyPressed('/')">/</div>
-</div>
+    <div class="keyboard">
+        <!-- Generate keys from the phoneme IPA dictionary -->
+        {% for phoneme in phoneme_ipa_dict.keys() %}
+        <div class="key {% if phoneme == 'AW' %}aw{% endif %}{% if phoneme == 'AA' %}aa{% endif %}{% if phoneme == 'AE' %}ae{% endif %}{% if phoneme == 'EH' %}eh{% endif %}{% if phoneme == 'B' %}b{% endif %}{% if phoneme == 'UH' %}uh{% endif %}{% if phoneme == 'OY' %}oy{% endif %}{% if phoneme == 'JH' %}jh{% endif %}{% if phoneme == 'CH' %}ch{% endif %}{% if phoneme == 'D' %}d{% endif %}{% if phoneme == 'DH' %}dh{% endif %}{% if phoneme == 'IH' %}ih{% endif %}{% if phoneme == 'F' %}f{% endif %}{% if phoneme == 'G' %}g{% endif %}{% if phoneme == 'HH' %}hh{% endif %}{% if phoneme == 'K' %}k{% endif %}{% if phoneme == 'L' %}l{% endif %}{% if phoneme == 'M' %}m{% endif %}{% if phoneme == 'N' %}n{% endif %}{% if phoneme == 'AH' %}ah{% endif %}{% if phoneme == 'P' %}p{% endif %}{% if phoneme == 'AY' %}ay{% endif %}{% if phoneme == 'R' %}r{% endif %}{% if phoneme == 'NG' %}ng{% endif %}{% if phoneme == 'Z' %}z{% endif %}{% if phoneme == 'SH' %}sh{% endif %}{% if phoneme == 'UW' %}uw{% endif %}{% if phoneme == 'S' %}s{% endif %}{% if phoneme == 'ZH' %}zh{% endif %}{% if phoneme == 'TH' %}th{% endif %}{% if phoneme == 'IY' %}iy{% endif %}{% if phoneme == 'T' %}t{% endif %}{% if phoneme == 'V' %}v{% endif %}{% if phoneme == 'W' %}w{% endif %}{% if phoneme == 'OW' %}ow{% endif %}{% if phoneme == 'Y' %}y{% endif %}{% if phoneme == 'AO' %}ao{% endif %}{% if phoneme == 'ER' %}er{% endif %}{% if phoneme == 'EY' %}ey{% endif %}" onclick="keyPressed('{{ phoneme }}')">{{ phoneme }}</div>
+        {% endfor %}
+    </div>
 
 </body>
+
 </html>
