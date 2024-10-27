@@ -2,6 +2,7 @@ from speechbrain.inference.text import GraphemeToPhoneme
 import spacy
 from nltk.corpus import cmudict
 import re
+from spacy.lang.en import stop_words
 
 '''
 Methods for converting between CMU Arpabet and 
@@ -34,14 +35,12 @@ class IPA:
         for sentence in text:
             separated_word = []
             for word in sentence:
-                try:
-                    separated_word.append(''.join( \
-                        [self.phoneme_ipa_dict[phoneme] \
-                         for phoneme in word]))
-                except:
-                    print(f"Failed to convert {word} \
-                          from CMUdict to Modified IPA")
+                print(word)
+                separated_word.append(self.phoneme_ipa_dict[word])
+
             ipa_text.append(separated_word)
+
+        ipa_text = [''.join(i) for i in ipa_text]
         return ipa_text
     
     # Convert IPA symbols to CMUdict Phonemes
@@ -72,7 +71,7 @@ class IPA:
     
     # Get list of stop words in IPA symbols
     def get_common_words(self):
-        word_list = spacy.stop_words.STOP_WORDS
+        word_list = stop_words.STOP_WORDS
 
         # Convert to CMUdict style phonemes
         phonemes = []

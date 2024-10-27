@@ -1,2 +1,4 @@
 cornell_movie_quotes_corpus/*
 testing.ipynb
+mlruns/*
+pretrained_models/*

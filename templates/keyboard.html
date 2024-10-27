@@ -111,7 +111,7 @@
 
         .key.b {
             background-image:
-                linear-gradient(to left,rgba(44, 0, 205, 0.411) 99.99%, rgba(255, 0, 0, 0) 0%),
+                linear-gradient(to left, rgba(44, 0, 205, 0.411) 99.99%, rgba(255, 0, 0, 0) 0%),
                 /* Right shaded */
                 url('/assets/bee.svg');
             /* Update this path */
@@ -303,7 +303,7 @@
 
         .key.l {
             background-image:
-                linear-gradient(to left,  rgba(255, 0, 0, 0) 65%,rgba(44, 0, 205, 0.411) 35%),
+                linear-gradient(to left, rgba(255, 0, 0, 0) 65%, rgba(44, 0, 205, 0.411) 35%),
                 /* Right shaded */
                 url('/assets/lamp.svg');
             /* Update this path */
@@ -335,7 +335,7 @@
 
         .key.n {
             background-image:
-                linear-gradient(to left,  rgba(255, 0, 0 ,0) 65%, rgba(44, 0, 205, 0.411) 35%),
+                linear-gradient(to left, rgba(255, 0, 0, 0) 65%, rgba(44, 0, 205, 0.411) 35%),
                 /* Right shaded */
                 url('/assets/nail.svg');
             /* Update this path */
@@ -351,7 +351,7 @@
 
         .key.ah {
             background-image:
-                linear-gradient(to left,  rgba(255, 255, 255, 0.527) 35%, rgba(21, 0, 255, 0.495) 40%-50%, rgba(255, 255, 255, 0.411) 60%),
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 35%, rgba(21, 0, 255, 0.495) 40%-50%, rgba(255, 255, 255, 0.411) 60%),
                 /* Right shaded */
                 url('/assets/nut.svg');
             /* Update this path */
@@ -367,7 +367,7 @@
 
         .key.p {
             background-image:
-                linear-gradient(to left, rgba(255, 0, 0, 0) 55%,rgba(44, 0, 205, 0.411) 45%),
+                linear-gradient(to left, rgba(255, 0, 0, 0) 55%, rgba(44, 0, 205, 0.411) 45%),
                 /* Right shaded */
                 url('/assets/pig.svg');
             /* Update this path */
@@ -479,7 +479,7 @@
 
         .key.s {
             background-image:
-                linear-gradient(to left, rgba(255, 0, 0 ,0) 60%, rgba(44, 0, 205, 0.411) 40%),
+                linear-gradient(to left, rgba(255, 0, 0, 0) 60%, rgba(44, 0, 205, 0.411) 40%),
                 /* Right shaded */
                 url('/assets/snake.svg');
             /* Update this path */
@@ -543,7 +543,7 @@
 
         .key.t {
             background-image:
-                linear-gradient(to left,  rgba(255, 0, 0 ,0) 65%, rgba(44, 0, 205, 0.411) 35%),
+                linear-gradient(to left, rgba(255, 0, 0, 0) 65%, rgba(44, 0, 205, 0.411) 35%),
                 /* Right shaded */
                 url('/assets/turtle.svg');
             /* Update this path */
@@ -655,7 +655,7 @@
 
         .key.ey {
             background-image:
-                linear-gradient(to left,  rgba(255, 255, 255, 0.527) 45%, rgba(21, 0, 255, 0.495) 45%-65%, rgba(255, 255, 255, 0.411) 65%),
+                linear-gradient(to left, rgba(255, 255, 255, 0.527) 45%, rgba(21, 0, 255, 0.495) 45%-65%, rgba(255, 255, 255, 0.411) 65%),
                 /* Right shaded */
                 url('/assets/cake.svg');
             /* Update this path */
@@ -668,10 +668,47 @@
             color: transparent;
             /* Make the text transparent if desired */
         }
-
     </style>
+    <style>
+        .prediction-button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="prediction-buttons-container">
+        <button class="prediction-button" id="button1"></button>
+        <button class="prediction-button" id="button2"></button>
+        <button class="prediction-button" id="button3"></button>
+        <button class="prediction-button" id="button4"></button>
+        <button class="prediction-button" id="button5"></button>
+        <button class="prediction-button" id="button6"></button>
+    </div>
+
     <script>
+    // Define an array with the button texts
+    const buttonTexts = [
+        "Prediction 1",
+        "Prediction 2",
+        "Prediction 3",
+        "Prediction 4",
+        "Prediction 5",
+        "Prediction 6"
+    ];
+
+    // Loop through each button and set its text
+    buttonTexts.forEach((text, index) => {
+        const button = document.getElementById(`button${index + 1}`);
+        if (button) {
+            button.textContent = text;  // Set the button text
+        }
+    });
         async function keyPressed(symbol) {
+            // Send POST request
             const response = await fetch('/key_pressed', {
                 method: 'POST',
                 headers: {
@@ -679,21 +716,49 @@
                 },
                 body: JSON.stringify({ symbol: symbol })
             });
+
             const result = await response.json();
             console.log(result);  // Optional: Log the response from the server
+
+            // Send GET request to /input
+            const inputResponse = await fetch('/input');
+            const inputData = await inputResponse.json();  // Assuming the response is in JSON format
+
+            // Update the buttons with inputData
+            updateButtons(inputData);
+        }
+
+        function updateButtons(inputList) {
+            // Get button elements
+            const pred_buttons = [
+                document.getElementById('button1'),
+                document.getElementById('button2'),
+                document.getElementById('button3'),
+                document.getElementById('button4'),
+                document.getElementById('button5'),
+                document.getElementById('button6')
+            ];
+
+            // Update button text with elements from the input list
+            for (let i = 0; i < pred_buttons.length; i++) {
+                if (inputList[i]) {
+                    pred_buttons[i].textContent = inputList[i];  // Set button text
+                } else {
+                    pred_buttons[i].textContent = '';  // Clear text if there's no more data
+                }
+            }
         }
     </script>
-</head>
-
-<body>
-
     <div class="keyboard">
         <!-- Generate keys from the phoneme IPA dictionary -->
         {% for phoneme in phoneme_ipa_dict.keys() %}
-        <div class="key {% if phoneme == 'AW' %}aw{% endif %}{% if phoneme == 'AA' %}aa{% endif %}{% if phoneme == 'AE' %}ae{% endif %}{% if phoneme == 'EH' %}eh{% endif %}{% if phoneme == 'B' %}b{% endif %}{% if phoneme == 'UH' %}uh{% endif %}{% if phoneme == 'OY' %}oy{% endif %}{% if phoneme == 'JH' %}jh{% endif %}{% if phoneme == 'CH' %}ch{% endif %}{% if phoneme == 'D' %}d{% endif %}{% if phoneme == 'DH' %}dh{% endif %}{% if phoneme == 'IH' %}ih{% endif %}{% if phoneme == 'F' %}f{% endif %}{% if phoneme == 'G' %}g{% endif %}{% if phoneme == 'HH' %}hh{% endif %}{% if phoneme == 'K' %}k{% endif %}{% if phoneme == 'L' %}l{% endif %}{% if phoneme == 'M' %}m{% endif %}{% if phoneme == 'N' %}n{% endif %}{% if phoneme == 'AH' %}ah{% endif %}{% if phoneme == 'P' %}p{% endif %}{% if phoneme == 'AY' %}ay{% endif %}{% if phoneme == 'R' %}r{% endif %}{% if phoneme == 'NG' %}ng{% endif %}{% if phoneme == 'Z' %}z{% endif %}{% if phoneme == 'SH' %}sh{% endif %}{% if phoneme == 'UW' %}uw{% endif %}{% if phoneme == 'S' %}s{% endif %}{% if phoneme == 'ZH' %}zh{% endif %}{% if phoneme == 'TH' %}th{% endif %}{% if phoneme == 'IY' %}iy{% endif %}{% if phoneme == 'T' %}t{% endif %}{% if phoneme == 'V' %}v{% endif %}{% if phoneme == 'W' %}w{% endif %}{% if phoneme == 'OW' %}ow{% endif %}{% if phoneme == 'Y' %}y{% endif %}{% if phoneme == 'AO' %}ao{% endif %}{% if phoneme == 'ER' %}er{% endif %}{% if phoneme == 'EY' %}ey{% endif %}" onclick="keyPressed('{{ phoneme }}')">{{ phoneme }}</div>
+        <div class="key {% if phoneme == 'AW' %}aw{% endif %}{% if phoneme == 'AA' %}aa{% endif %}{% if phoneme == 'AE' %}ae{% endif %}{% if phoneme == 'EH' %}eh{% endif %}{% if phoneme == 'B' %}b{% endif %}{% if phoneme == 'UH' %}uh{% endif %}{% if phoneme == 'OY' %}oy{% endif %}{% if phoneme == 'JH' %}jh{% endif %}{% if phoneme == 'CH' %}ch{% endif %}{% if phoneme == 'D' %}d{% endif %}{% if phoneme == 'DH' %}dh{% endif %}{% if phoneme == 'IH' %}ih{% endif %}{% if phoneme == 'F' %}f{% endif %}{% if phoneme == 'G' %}g{% endif %}{% if phoneme == 'HH' %}hh{% endif %}{% if phoneme == 'K' %}k{% endif %}{% if phoneme == 'L' %}l{% endif %}{% if phoneme == 'M' %}m{% endif %}{% if phoneme == 'N' %}n{% endif %}{% if phoneme == 'AH' %}ah{% endif %}{% if phoneme == 'P' %}p{% endif %}{% if phoneme == 'AY' %}ay{% endif %}{% if phoneme == 'R' %}r{% endif %}{% if phoneme == 'NG' %}ng{% endif %}{% if phoneme == 'Z' %}z{% endif %}{% if phoneme == 'SH' %}sh{% endif %}{% if phoneme == 'UW' %}uw{% endif %}{% if phoneme == 'S' %}s{% endif %}{% if phoneme == 'ZH' %}zh{% endif %}{% if phoneme == 'TH' %}th{% endif %}{% if phoneme == 'IY' %}iy{% endif %}{% if phoneme == 'T' %}t{% endif %}{% if phoneme == 'V' %}v{% endif %}{% if phoneme == 'W' %}w{% endif %}{% if phoneme == 'OW' %}ow{% endif %}{% if phoneme == 'Y' %}y{% endif %}{% if phoneme == 'AO' %}ao{% endif %}{% if phoneme == 'ER' %}er{% endif %}{% if phoneme == 'EY' %}ey{% endif %}"
+            onclick="keyPressed('{{ phoneme }}')">{{ phoneme }}</div>
         {% endfor %}
     </div>
-
+    <div>
+        <p>{{ user_input }}</p>
+    </div>
 </body>
 
 </html>
