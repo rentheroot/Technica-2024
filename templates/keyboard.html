@@ -690,23 +690,21 @@
     </div>
 
     <script>
-    // Define an array with the button texts
-    const buttonTexts = [
-        "Prediction 1",
-        "Prediction 2",
-        "Prediction 3",
-        "Prediction 4",
-        "Prediction 5",
-        "Prediction 6"
-    ];
+        // Define an array with the predictions passed from Jinja2
+        const predictions = [
+            {% for pred in predictions %}
+                "{{ pred }}"{% if not loop.last %}, {% endif %}
+            {% endfor %}
+        ];
 
-    // Loop through each button and set its text
-    buttonTexts.forEach((text, index) => {
-        const button = document.getElementById(`button${index + 1}`);
-        if (button) {
-            button.textContent = text;  // Set the button text
-        }
-    });
+        // Loop through each button and set its text based on the predictions
+        predictions.forEach((text, index) => {
+            const button = document.getElementById(`button${index + 1}`);
+            if (button) {
+                button.textContent = text;  // Set the button text
+            }
+        });
+
         async function keyPressed(symbol) {
             // Send POST request
             const response = await fetch('/key_pressed', {
@@ -719,36 +717,15 @@
 
             const result = await response.json();
             console.log(result);  // Optional: Log the response from the server
-
-            // Send GET request to /input
-            const inputResponse = await fetch('/input');
-            const inputData = await inputResponse.json();  // Assuming the response is in JSON format
-
-            // Update the buttons with inputData
-            updateButtons(inputData);
+            window.location.reload();
+            updateButtons();
         }
 
-        function updateButtons(inputList) {
-            // Get button elements
-            const pred_buttons = [
-                document.getElementById('button1'),
-                document.getElementById('button2'),
-                document.getElementById('button3'),
-                document.getElementById('button4'),
-                document.getElementById('button5'),
-                document.getElementById('button6')
-            ];
-
-            // Update button text with elements from the input list
-            for (let i = 0; i < pred_buttons.length; i++) {
-                if (inputList[i]) {
-                    pred_buttons[i].textContent = inputList[i];  // Set button text
-                } else {
-                    pred_buttons[i].textContent = '';  // Clear text if there's no more data
-                }
-            }
+        function updateButtons() {
+            // This function could be used for any updates needed
         }
     </script>
+    
     <div class="keyboard">
         <!-- Generate keys from the phoneme IPA dictionary -->
         {% for phoneme in phoneme_ipa_dict.keys() %}
@@ -756,9 +733,20 @@
             onclick="keyPressed('{{ phoneme }}')">{{ phoneme }}</div>
         {% endfor %}
     </div>
-    <div>
-        <p>{{ user_input }}</p>
-    </div>
+    <script>
+        function backspace() {
+            fetch('/backspace', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Backspace response:', data);
+            })
+            .catch(error => console.error('Error:', error));
+            window.location.reload();
+        }
+    </script>
+    <div><p>{{user_input}}</p>
+        <button onclick="backspace()">Backspace</button></div>
 </body>
-
 </html>

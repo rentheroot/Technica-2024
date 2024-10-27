@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import model_maker
+import json
 app = Flask(__name__)
 global model_build
 global live_predict
 global user_input
+global predictions
+predictions = []
 user_input = 'ʃʊɹ '
 model_build = model_maker.Build_Model(ipa_text = None, model_is_saved = True)
 live_predict = model_maker.Predictor(model_build.model, model_build.vectorize_layer)
@@ -23,7 +26,8 @@ phoneme_ipa_dict = {
 @app.route('/')
 def home():
     global user_input
-    return render_template('keyboard.html', phoneme_ipa_dict=phoneme_ipa_dict, user_input=user_input)
+    global predictions
+    return render_template('keyboard.html', phoneme_ipa_dict=phoneme_ipa_dict, user_input=user_input, predictions = predictions)
 
 @app.route('/key_pressed', methods=['POST'])
 def key_pressed():
@@ -47,11 +51,21 @@ def key_pressed():
 @app.route('/input', methods=['GET'])
 def handle_user_input():
     global predictions
+
     return render_template('in.html', user_input=predictions)
 
 @app.route('/assets/<path:path>')
 def send_report(path):
     return send_from_directory('assets', path)
+
+@app.route('/backspace', methods=['GET'])
+def rem_char():
+    global user_input
+    # Remove the last character if user_input is not empty
+    if user_input:
+        user_input = user_input[:-1]
+    # Return the updated user_input
+    return jsonify({"user_input": user_input})
 
 if __name__ == '__main__':
     app.run(debug=True)
